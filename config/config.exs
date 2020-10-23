@@ -7,7 +7,7 @@
 # all use the same configuration file. If you want different
 # configurations or dependencies per app, it is best to
 # move said applications out of the umbrella.
-import Config
+import Mix.Config
 
 # import_config "../apps/islands_engine/config/config.exs"
 import_config "../apps/islands_interface/config/config.exs"
