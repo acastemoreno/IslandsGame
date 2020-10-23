@@ -13,19 +13,16 @@
   <body>
     <header class="header">
       <nav role="navigation">
-        <ul>
-          <li>
-          <%= if @current_user do %>
-            <%= @current_user.name %>
-            <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
-          <% else %>
-            <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
-          <% end %>
-          </li>
-          <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-            <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), target: :_blank %></li>
-          <% end %>
-        </ul>
+        <%= if @current_user do %>
+          <h1 class="font-white"><%= @current_user.name %></h1>
+          <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
+        <% else %>
+          <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
+        <% end %>
+        <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+          <span> | </span>
+          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), target: :_blank %>
+        <% end %>
       </nav>
     </header>
 
