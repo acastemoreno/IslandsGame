@@ -1,7 +1,7 @@
 defmodule IslandsInterfaceWeb.Router do
   use IslandsInterfaceWeb, :router
 
-  alias IslandsInterfaceWeb.Plugs.{SetCurrentUser}
+  alias IslandsInterfaceWeb.Plugs.{SetCurrentUser, ForceExistingCurrentUser, ForceNotExistingCurrentUser}
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -17,17 +17,33 @@ defmodule IslandsInterfaceWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :force_auth do
+    plug ForceExistingCurrentUser
+  end
+
+  pipeline :force_not_auth do
+    plug ForceNotExistingCurrentUser
+  end
+
   scope "/", IslandsInterfaceWeb do
     pipe_through :browser
 
     get "/", PageController, :index
 
-    get "/login", LoginController, :index
-    post "/login", LoginController, :create
+    scope "/" do
+      pipe_through :force_not_auth
 
-    live "/login-live", LoginLive, :index
+      get "/login", LoginController, :index
+      post "/login", LoginController, :create
 
-    live "/room", RoomLive, :index
+      live "/login-live", LoginLive, :index
+    end
+
+    scope "/" do
+      pipe_through :force_auth
+
+      live "/room", RoomLive, :index
+    end
   end
 
   # Other scopes may use custom stacks.
