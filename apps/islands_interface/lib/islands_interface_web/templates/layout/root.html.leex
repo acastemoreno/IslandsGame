@@ -11,21 +11,17 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="font-white">Name</h1>
-        <nav role="navigation">
-          <ul>
-            <li>
-            <%= if @current_user do %>
-              <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
-            <% else %>
-              <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
-            <% end %>
-            </li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-        </nav>
+      <nav role="navigation">
+        <ul>
+          <li>
+          <%= if @current_user do %>
+            <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
+          <% else %>
+            <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
+          <% end %>
+          </li>
+        </ul>
+      </nav>
     </header>
     <main class="main">
       <%= @inner_content %>
@@ -33,9 +29,6 @@
 
     <h1>main room</h1>
 
-    <header class="header">
-      <h1 class="font-white">Name</h1>
-    </header>
     <main class="main">
       <section class="game-container">
         <div class="nickname-title">
