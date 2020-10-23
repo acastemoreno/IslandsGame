@@ -1,0 +1,78 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --lightblue: #26beff;
+  --blue: #0066ff;
+  --brown: #7c4b00;
+  --white: #ffffff;
+  --gold: #f2bd01;
+}
+
+body {
+  font-family: "Seymour One", sans-serif;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+button,
+input {
+  text-align: center;
+  font-family: "Seymour One", sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--lightblue);
+  font-size: 20px;
+}
+
+.main {
+  height: calc(100% - 70px);
+  margin-top: 70px;
+  padding: 20px;
+}
+
+.font-white {
+  color: white;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: var(--lightblue);
+}
+
+.nickname-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  color: var(--white);
+}
+
+.gold-button {
+  padding: 10px;
+  color: var(--white);
+  background-color: var(--gold);
+  border: 2px solid var(--white);
+  border-radius: 5px;
+}
