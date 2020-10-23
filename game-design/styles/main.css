@@ -76,3 +76,29 @@ button {
   border: 2px solid var(--white);
   border-radius: 5px;
 }
+
+.row-board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+}
+.piece-board {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid var(--blue);
+}
+
+.players-boat,
+.opponents-boat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--white);
+}
+
+.opponents-boat img {
+  transform: rotate(180deg);
+}

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Seymour+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles/main.css">
-  <link rel="stylesheet" href="./styles/game.css">
+  <link rel="stylesheet" href="./styles/edition.css">
   <title>Document</title>
 </head>
 <body>
@@ -14,17 +14,17 @@
   </header>
   <main class="main">
     <section class="game-container">
-      <div class="game">
+      <div class="edition">
         <div class="players-boat">
           <img src="./assets/images/green-boat.png" alt=""/>
-          <span class="players-score">Lifes: 16</span>
+          <button class="gold-button player-status">I'm ready"</button>
         </div>
-        <div class="game-arena">
+        <div class="edition-arena">
           <div class="players-board grid-board">
             <div class="row-board">
-              <button id="player-1-1" class="piece-board ground"></button>
-              <button id="player-1-2" class="piece-board explosion"></button>
-              <button id="player-1-3" class="piece-board hole"></button>
+              <button id="player-1-1" class="piece-board"></button>
+              <button id="player-1-2" class="piece-board"></button>
+              <button id="player-1-3" class="piece-board"></button>
               <button id="player-1-4" class="piece-board"></button>
               <button id="player-1-5" class="piece-board"></button>
               <button id="player-1-6" class="piece-board"></button>
@@ -34,28 +34,20 @@
               <button id="player-1-10" class="piece-board"></button>
             </div>
           </div>
-          <div class="opponents-board grid-board">
-              <div class="row-board">
-                <button id="opponent-1-1" class="piece-board"></button>
-                <button id="opponent-1-2" class="piece-board explosion"></button>
-                <button id="opponent-1-3" class="piece-board hole"></button>
-                <button id="opponent-1-4" class="piece-board"></button>
-                <button id="opponent-1-5" class="piece-board"></button>
-                <button id="opponent-1-6" class="piece-board"></button>
-                <button id="opponent-1-7" class="piece-board"></button>
-                <button id="opponent-1-8" class="piece-board"></button>
-                <button id="opponent-1-9" class="piece-board"></button>
-                <button id="opponent-1-10" class="piece-board"></button>
-              </div>
+          <div class="choose-islands-board">
+            <div class="choose-island-message">Choose and island and put it in the board</div>
+            <div class="islands-to-choose">
+              <button class="island-1 island-to-choose"></button>
+              <button class="island-2 island-to-choose"></button>
+              <button class="island-3 island-to-choose"></button>
+              <button class="island-4 island-to-choose"></button>
+            </div>
           </div>
         </div>
         <div class="opponents-boat">
           <img src="./assets/images/red-boat.png" alt=""/>
-          <span class="opponents-score">Lifes: 16</span>
+          <span class="player-status">Choosing...</button>
         </div>
-      </div>
-      <div class="game-turn">
-        <h1>Your turn!</h1>
       </div>
     </section>
   </main>
