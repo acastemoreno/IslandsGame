@@ -49,8 +49,6 @@ defmodule IslandsInterfaceWeb.Router do
       delete "/logout", SessionController, :logout
 
       live "/room", RoomLive, :index
-
-      live "/game", GameLive, :index
     end
   end
 

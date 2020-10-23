@@ -1,4 +1,4 @@
-<h2><%= @current_user.name %></h2>
+<h2>Connected Users:</h2>
 <ul>
 <%= for {_user_id, user} <- @users do %>
   <%= if user.id == @current_user.id do %>
@@ -8,21 +8,23 @@
   <% else %>
     <li>
       <span><%= user.name %></span>
-      <button phx-click="challenge" phx-value-oponent-id="<%= user.id %>">Retar!</button>
     </li>
   <% end %>
 <% end %>
 </ul>
-<%= if @challenged !== "" do %>
-  <div>
 
-
-    challenge recive from <%= @challenged %>
-    <button phx-click="accept-challenge" phx-value-oponent-id="<%= @challenged %>">
-    Accept!
-    </button>
-    <button phx-click="decline-challenge">
-    Decline!
-    </button>
-  </div>
+<h2>Chat:</h2>
+<ul>
+<%= for message <- Enum.reverse(@messages) do %>
+  <li><%= message.username %>: <%= message.message %></li>
 <% end %>
+</ul>
+
+
+<section class="phx-hero">
+  <form phx-submit="submit_message" method="POST">
+    <input type="text" name="message" placeholder="Type your message"/>
+    <input type="hidden" value="<%= Phoenix.Controller.get_csrf_token() %>" name="_csrf_token"/>
+    <button type="submit" phx-disable-with="Searching...">Submit</button>
+  </form>
+</section>
