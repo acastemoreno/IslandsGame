@@ -1,0 +1,30 @@
+.game-nickname-form {
+  display: flex;
+  flex-direction: column;
+}
+.game-nickname-form input {
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  color: var(--white);
+  border: 1px solid var(--white);
+  background-color: transparent;
+  font-size: 24px;
+}
+.game-nickname-form ::placeholder {
+  color: var(--white);
+}
+.game-nickname-form button {
+  padding: 10px 20px;
+  background-color: var(--brown);
+  border: 1px solid var(--white);
+  border-radius: 5px;
+  color: var(--white);
+}
+.nickname-title h1 {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+.nickname-title img {
+  width: 20px;
+  margin: 5px;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Seymour+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="stylesheet" href="./styles/game.css">
+  <title>Document</title>
+</head>
+<body>
+  <header class="header">
+    <h1 class="font-white">Name</h1>
+  </header>
+  <main class="main">
+    <section class="game-container">
+      <div class="game">
+        <div class="players-boat">
+          <img src="./assets/images/green-boat.png" alt=""/>
+          <span class="players-score">Lifes: 16</span>
+        </div>
+        <div class="game-arena">
+          <div class="players-board grid-board">
+            <div class="col">
+              <button id="player-1-1" class="row ground"></button>
+              <button id="player-1-2" class="row explosion"></button>
+              <button id="player-1-3" class="row hole"></button>
+              <button id="player-1-4" class="row"></button>
+              <button id="player-1-5" class="row"></button>
+              <button id="player-1-6" class="row"></button>
+              <button id="player-1-7" class="row"></button>
+              <button id="player-1-8" class="row"></button>
+              <button id="player-1-9" class="row"></button>
+              <button id="player-1-10" class="row"></button>
+            </div>
+          </div>
+          <div class="opponents-board grid-board">
+          </div>
+        </div>
+        <div class="opponents-boat">
+          <img src="./assets/images/red-boat.png" alt=""/>
+          <span class="opponents-score">Lifes: 16</span>
+        </div>
+      </div>
+      <div class="game-turn">
+        <h1>Your turn!</h1>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
