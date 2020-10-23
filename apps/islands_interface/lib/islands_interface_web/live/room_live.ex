@@ -23,19 +23,52 @@ defmodule IslandsInterfaceWeb.RoomLive do
           }
         )
 
+      # Subcribe to users conected
       Phoenix.PubSub.subscribe(PubSub, @presence)
+      # Subcribe to challenge
+      Phoenix.PubSub.subscribe(PubSub, topic_challenge(user_id))
     end
 
     socket =
       socket
-      |> assign(current_user: current_user, users: %{})
+      |> assign(current_user: current_user, users: %{}, challenged: "")
       |> handle_joins(Presence.list(@presence))
 
     {:ok, socket}
   end
 
   @impl true
-  def handle_info(%Phoenix.Socket.Broadcast{event: "presence_diff", payload: diff}, socket) do
+  def handle_event("challenge", %{"oponent-id" => oponent_id}, socket) do
+    Phoenix.PubSub.broadcast(PubSub, topic_challenge(oponent_id), %{
+      event: "challenge_recive",
+      challenging_id: socket.assigns.current_user.id
+    })
+
+    Phoenix.PubSub.subscribe(PubSub, topic_challenge(oponent_id))
+
+    {:noreply, socket}
+  end
+
+  def handle_event("decline-challenge", _params, socket) do
+    socket =
+      socket
+      |> assign(challenged: "")
+
+    {:noreply, socket}
+  end
+
+  def handle_event("accept-challenge", %{"oponent-id" => oponent_id}, socket) do
+    Phoenix.PubSub.broadcast(PubSub, topic_challenge(socket.assigns.current_user.id), %{
+      event: "challenge_acepted",
+      player_1: socket.assigns.current_user.id,
+      player_2: oponent_id
+    })
+
+    {:noreply, socket |> assign(:challenged, "")}
+  end
+
+  @impl true
+  def handle_info(%{event: "presence_diff", payload: diff}, socket) do
     {
       :noreply,
       socket
@@ -44,21 +77,16 @@ defmodule IslandsInterfaceWeb.RoomLive do
     }
   end
 
-  @impl true
-  def render(assigns) do
-    ~L"""
-      <h2><%= @current_user.name %></h2>
-      <% IO.inspect(@users) %>
-      <ul>
-      <%= for {_user_id, user} <- @users do %>
-        <%= if user.id == @current_user.id do %>
-          <li><%= user[:name] %> (me)</li>
-        <% else %>
-          <li><%= user[:name] %></li>
-        <% end %>
-      <% end %>
-      </ul>
-    """
+  def handle_info(%{event: "challenge_recive", challenging_id: challenging_id}, socket) do
+    socket =
+      socket |> update_socket_challenge_recived(socket.assigns.current_user.id, challenging_id)
+
+    {:noreply, socket}
+  end
+
+  def handle_info(%{event: "challenge_acepted", player_1: player_1, player_2: player_2}, socket) do
+    IO.inspect(player_1)
+    {:noreply, socket}
   end
 
   defp handle_joins(socket, joins) do
@@ -71,5 +99,18 @@ defmodule IslandsInterfaceWeb.RoomLive do
     Enum.reduce(leaves, socket, fn {user, _}, socket ->
       assign(socket, :users, Map.delete(socket.assigns.users, user))
     end)
+  end
+
+  defp topic_challenge(user_id) do
+    "challenge:#{user_id}"
+  end
+
+  defp update_socket_challenge_recived(socket, current_user_id, current_user_id) do
+    socket
+  end
+
+  defp update_socket_challenge_recived(socket, current_user_id, challenger_id) do
+    socket
+    |> assign(challenged: challenger_id)
   end
 end
