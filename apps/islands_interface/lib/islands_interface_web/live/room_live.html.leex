@@ -1,0 +1,26 @@
+<h2><%= @current_user.name %></h2>
+<ul>
+<%= for {_user_id, user} <- @users do %>
+  <%= if user.id == @current_user.id do %>
+    <li>
+      <span><%= user.name %> (me)</span>
+    </li>
+  <% else %>
+    <li>
+      <span><%= user.name %></span>
+      <button phx-click="challenge" phx-value-oponent-id="<%= user.id %>">Retar!</button>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+<%= if @challenged !== "" do %>
+  <div>
+    challenge recive from <%= @challenged %>
+    <button phx-click="accept-challenge" phx-value-oponent-id="<%= @challenged %>">
+    Accept!
+    </button>
+    <button phx-click="decline-challenge">
+    Decline!
+    </button>
+  </div>
+<% end %>
