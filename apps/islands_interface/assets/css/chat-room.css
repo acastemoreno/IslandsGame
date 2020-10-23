@@ -17,7 +17,7 @@
 }
 .chat-room__container {
   padding: 20px;
-  height: 92%;
+  height: 90%;
   overflow-y: auto;
 }
 .chat-room__chat-panel {
@@ -42,6 +42,14 @@
 .chat-room__list-messages {
   list-style: none;
 }
+.chat-room__list-message {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
 .chat-room__list-message img {
   height: 30px;
   margin-right: 20px;

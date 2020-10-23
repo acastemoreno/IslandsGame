@@ -37,7 +37,7 @@
         <%= for message <- Enum.reverse(@messages) do %>
           <li class="chat-room__list-message">
             <img src="/images/green-boat.png" alt=""/>
-            <span><bold><%= message.username %>:</bold> <%= message.message %></span>
+            <span><bold><%= message.username %>:</bold> <span class="sans-serif"><%= message.message %></span></span>
           </li>
         <% end %>
         </ul>
