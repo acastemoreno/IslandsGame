@@ -1,5 +1,10 @@
-<section class="phx-hero">
-  <form phx-change="validate_name" action="/login" method="POST">
+<section class="phx-hero game-container">
+  <div class="nickname-title">
+    <img src="/images/green-boat.png" alt=""/>
+    <h1>Choose a nickname</h1>
+    <img src="/images/red-boat.png" alt=""/>
+  </div>
+  <form phx-change="validate_name" action="/login" method="POST" class="game-nickname-form">
     <input type="text" name="name" value="<%= @name %>" placeholder="Type your name"/>
     <%= if not @valid? do%>
       <p><%= @message_error%></p>

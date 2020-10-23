@@ -1,0 +1,58 @@
+.game {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70%;
+  width: 90%;
+}
+
+.game-arena {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  height: 90%;
+  width: 80%;
+  border-radius: 10px;
+  border: 1px solid var(--blue);
+}
+
+.players-score,
+.opponents-score {
+  margin-top: 20px;
+}
+
+.grid-board {
+  display: grid;
+  height: 100%;
+  width: 49%;
+  border: 1px solid var(--blue);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.ground {
+  background-image: url(/images/ground.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.explosion {
+  background-image: url(/images/explosion.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.hole {
+  background-image: url(/images/hole.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.game-turn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
