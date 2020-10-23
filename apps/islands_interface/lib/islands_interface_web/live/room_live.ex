@@ -4,6 +4,7 @@ defmodule IslandsInterfaceWeb.RoomLive do
   alias IslandsInterface.Accounts
   alias IslandsInterfaceWeb.Presence
   alias IslandsInterface.PubSub
+  alias IslandsInterfaceWeb.GameLive
 
   @presence "room:presence"
 
@@ -84,8 +85,11 @@ defmodule IslandsInterfaceWeb.RoomLive do
     {:noreply, socket}
   end
 
-  def handle_info(%{event: "challenge_acepted", player_1: player_1, player_2: player_2}, socket) do
-    IO.inspect(player_1)
+  def handle_info(%{event: "challenge_acepted"}, socket) do
+    socket =
+      socket
+      |> push_redirect(to: Routes.game_path(socket, :index))
+
     {:noreply, socket}
   end
 
@@ -109,7 +113,7 @@ defmodule IslandsInterfaceWeb.RoomLive do
     socket
   end
 
-  defp update_socket_challenge_recived(socket, current_user_id, challenger_id) do
+  defp update_socket_challenge_recived(socket, _current_user_id, challenger_id) do
     socket
     |> assign(challenged: challenger_id)
   end
