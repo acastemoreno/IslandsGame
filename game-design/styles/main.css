@@ -37,8 +37,9 @@ button {
   height: 70px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between !important;
   background-color: var(--lightblue);
+  color: var(--white);
   font-size: 20px;
 }
 

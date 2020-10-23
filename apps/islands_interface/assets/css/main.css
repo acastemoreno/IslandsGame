@@ -33,13 +33,31 @@ button {
 .header {
   position: fixed;
   top: 0;
-  width: 100%;
-  height: 70px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
   background-color: var(--lightblue);
   font-size: 20px;
+  color: var(--white);
+}
+
+.header a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.separator {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
 }
 
 .main {
@@ -101,4 +119,8 @@ button {
 
 .opponents-boat img {
   transform: rotate(180deg);
+}
+
+.sans-serif {
+  font-family: sans-serif;
 }

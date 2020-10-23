@@ -13,16 +13,20 @@
   </head>
   <body>
     <header class="header">
-      <nav role="navigation">
+      <h1>App</h1>
+      <nav role="navigation" class="navigation">
         <%= if @current_user do %>
           <h1 class="font-white"><%= @current_user.name %></h1>
-          <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
         <% else %>
           <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
         <% end %>
         <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-          <span> | </span>
+          <span class="separator"> | </span>
           <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), target: :_blank %>
+        <% end %>
+        <%= if @current_user do %>
+          <span class="separator"> | </span>
+          <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
         <% end %>
       </nav>
     </header>
