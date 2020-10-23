@@ -3,7 +3,7 @@ defmodule IslandsInterface.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  alias IslandsInterface.Accounts
+  alias IslandsInterface.{Accounts, Chat}
 
   use Application
 
@@ -13,8 +13,9 @@ defmodule IslandsInterface.Application do
       IslandsInterfaceWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: IslandsInterface.PubSub},
-      Accounts,
       IslandsInterfaceWeb.Presence,
+      Accounts,
+      Chat,
       # Start the Endpoint (http/https)
       IslandsInterfaceWeb.Endpoint
       # Start a worker by calling: IslandsInterface.Worker.start_link(arg)

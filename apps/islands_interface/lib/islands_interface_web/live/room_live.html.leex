@@ -34,17 +34,18 @@
     <hr>
     <div class="chat-room__container">
       <ul class="chat-room__list-messages">
-        <%= for {_user_id, user} <- @users do %>
+        <%= for message <- Enum.reverse(@messages) do %>
           <li class="chat-room__list-message">
             <img src="/images/green-boat.png" alt=""/>
-            <span><%= user.name %> (me)</span>
+            <span><bold><%= message.username %>:</bold> <%= message.message %></span>
           </li>
         <% end %>
         </ul>
     </div>
-    <div class="chat-room__message-form-container">
-      <input type="text" class="chat-room__message-input" placeholder="Message"/>
-      <button class="gold-button">Send</button>
-    </div>
+    <form phx-submit="submit_message" method="POST" class="chat-room__message-form-container">
+      <input type="text" name="message" placeholder="Type your message" class="chat-room__message-input"/>
+      <input type="hidden" value="<%= Phoenix.Controller.get_csrf_token() %>" name="_csrf_token"/>
+      <button type="submit" phx-disable-with="Searching..." class="gold-button">Submit</button>
+    </form>
   </div>
 </div>
