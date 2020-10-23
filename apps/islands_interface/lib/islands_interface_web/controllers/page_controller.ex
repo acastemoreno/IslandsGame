@@ -3,6 +3,6 @@ defmodule IslandsInterfaceWeb.PageController do
 
   def index(conn, _params) do
     conn
-    |> redirect(to: Routes.login_path(conn, :index))
+    |> redirect(to: Routes.session_path(conn, :show_login))
   end
 end

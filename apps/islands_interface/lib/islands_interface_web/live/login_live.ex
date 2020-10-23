@@ -2,10 +2,9 @@ defmodule IslandsInterfaceWeb.LoginLive do
   use IslandsInterfaceWeb, :live_view
 
   alias IslandsInterface.Accounts
-  alias IslandsInterfaceWeb.PageLive
 
   @impl true
-  def mount(_params, session, socket) do
+  def mount(_params, _session, socket) do
     {:ok, assign(socket, name: "", valid?: true, message_error: "")}
   end
 

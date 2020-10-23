@@ -5,6 +5,8 @@ defmodule IslandsInterface.Accounts do
 
   def get_user(user_id), do: GenServer.call(__MODULE__, {:get_user, user_id})
 
+  def delete_user(user_id), do: GenServer.call(__MODULE__, {:delete_user, user_id})
+
   def validate_user(""), do: {:error, :empty_string}
 
   def validate_user(username),
@@ -25,6 +27,13 @@ defmodule IslandsInterface.Accounts do
     user = Enum.find(users, &(&1.id === user_id))
 
     {:reply, user, state}
+  end
+
+  @impl true
+  def handle_call({:delete_user, user_id}, _from, %{users: users} = state) do
+    user = Enum.find(users, &(&1.id === user_id))
+
+    {:reply, user, update_in(state, [:users], &List.delete(&1, user))}
   end
 
   @impl true

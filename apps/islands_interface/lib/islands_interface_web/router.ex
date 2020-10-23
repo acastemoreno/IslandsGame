@@ -1,7 +1,11 @@
 defmodule IslandsInterfaceWeb.Router do
   use IslandsInterfaceWeb, :router
 
-  alias IslandsInterfaceWeb.Plugs.{SetCurrentUser, ForceExistingCurrentUser, ForceNotExistingCurrentUser}
+  alias IslandsInterfaceWeb.Plugs.{
+    SetCurrentUser,
+    ForceExistingCurrentUser,
+    ForceNotExistingCurrentUser
+  }
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -33,14 +37,16 @@ defmodule IslandsInterfaceWeb.Router do
     scope "/" do
       pipe_through :force_not_auth
 
-      get "/login", LoginController, :index
-      post "/login", LoginController, :create
+      get "/login", SessionController, :show_login
+      post "/login", SessionController, :create_session
 
       live "/login-live", LoginLive, :index
     end
 
     scope "/" do
       pipe_through :force_auth
+
+      delete "/logout", SessionController, :logout
 
       live "/room", RoomLive, :index
     end

@@ -4,9 +4,8 @@ defmodule IslandsInterfaceWeb.Plugs.ForceNotExistingCurrentUser do
   import Phoenix.Controller, only: [put_flash: 3, redirect: 2]
   alias IslandsInterfaceWeb.Router.Helpers, as: Routes
 
-  alias IslandsInterface.Accounts
-
   def init(opts), do: opts
+
   def call(conn, _opts) do
     if conn.assigns.current_user do
       conn

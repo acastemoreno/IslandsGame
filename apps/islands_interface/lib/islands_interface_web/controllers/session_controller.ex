@@ -1,13 +1,13 @@
-defmodule IslandsInterfaceWeb.LoginController do
+defmodule IslandsInterfaceWeb.SessionController do
   use IslandsInterfaceWeb, :controller
 
   alias IslandsInterface.Accounts
 
-  def index(conn, _params) do
+  def show_login(conn, _params) do
     render(conn, "index.html")
   end
 
-  def create(conn, %{"name" => name}) do
+  def create_session(conn, %{"name" => name}) do
     case Accounts.create_user(name) do
       {:ok, user} ->
         conn
@@ -20,5 +20,13 @@ defmodule IslandsInterfaceWeb.LoginController do
         |> put_flash(:info, "Error loggin")
         |> render("index.html")
     end
+  end
+
+  def logout(conn, _params) do
+    Accounts.delete_user(conn.assigns.current_user.id)
+
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.session_path(conn, :show_login))
   end
 end
