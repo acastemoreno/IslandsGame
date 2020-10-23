@@ -1,26 +1,50 @@
-<h2><%= @current_user.name %></h2>
-<ul>
-<%= for {_user_id, user} <- @users do %>
-  <%= if user.id == @current_user.id do %>
-    <li>
-      <span><%= user.name %> (me)</span>
-    </li>
-  <% else %>
-    <li>
-      <span><%= user.name %></span>
-      <button phx-click="challenge" phx-value-oponent-id="<%= user.id %>">Retar!</button>
-    </li>
-  <% end %>
-<% end %>
-</ul>
-<%= if @challenged !== "" do %>
-  <div>
-    challenge recive from <%= @challenged %>
-    <button phx-click="accept-challenge" phx-value-oponent-id="<%= @challenged %>">
-    Accept!
-    </button>
-    <button phx-click="decline-challenge">
-    Decline!
-    </button>
+<div class="chat-room">
+  <div class="chat-room__online-users">
+    <!-- <h2><%= @current_user.name %></h2> -->
+    <h1>Users online</h1>
+    <hr>
+    <div class="chat-room__container">
+      <ul class="chat-room__list-users">
+      <%= for {_user_id, user} <- @users do %>
+        <li class="chat-room__list-user">
+          <img src="/images/green-boat.png" alt=""/>
+          <%= if user.id == @current_user.id do %>
+          <span><%= user.name %> (me)</span>
+          <% else %>
+          <span><%= user.name %></span>
+          <% end %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+    <%= if @challenged !== "" do %>
+      <div>
+        challenge recive from <%= @challenged %>
+        <button phx-click="accept-challenge" phx-value-oponent-id="<%= @challenged %>">
+        Accept!
+        </button>
+        <button phx-click="decline-challenge">
+        Decline!
+        </button>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="chat-room__chat-panel">
+    <h1>Live</h1>
+    <hr>
+    <div class="chat-room__container">
+      <ul class="chat-room__list-messages">
+        <%= for {_user_id, user} <- @users do %>
+          <li class="chat-room__list-message">
+            <img src="/images/green-boat.png" alt=""/>
+            <span><%= user.name %> (me)</span>
+          </li>
+        <% end %>
+        </ul>
+    </div>
+    <div class="chat-room__message-form-container">
+      <input type="text" class="chat-room__message-input" placeholder="Message"/>
+      <button class="gold-button">Send</button>
+    </div>
+  </div>
+</div>
