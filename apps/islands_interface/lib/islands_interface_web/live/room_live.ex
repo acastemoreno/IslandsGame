@@ -61,8 +61,7 @@ defmodule IslandsInterfaceWeb.RoomLive do
   def handle_event("accept-challenge", %{"oponent-id" => oponent_id}, socket) do
     Phoenix.PubSub.broadcast(PubSub, topic_challenge(socket.assigns.current_user.id), %{
       event: "challenge_acepted",
-      player_1: socket.assigns.current_user.id,
-      player_2: oponent_id
+      players: [socket.assigns.current_user.id, oponent_id]
     })
 
     {:noreply, socket |> assign(:challenged, "")}
@@ -85,10 +84,12 @@ defmodule IslandsInterfaceWeb.RoomLive do
     {:noreply, socket}
   end
 
-  def handle_info(%{event: "challenge_acepted"}, socket) do
+  def handle_info(%{event: "challenge_acepted", players: players}, socket) do
+    id_oponent = id_oponent(socket.assigns.current_user.id, players)
+
     socket =
       socket
-      |> push_redirect(to: Routes.game_path(socket, :index))
+      |> push_redirect(to: Routes.game_path(socket, :index, opponent_id: id_oponent))
 
     {:noreply, socket}
   end
@@ -116,5 +117,9 @@ defmodule IslandsInterfaceWeb.RoomLive do
   defp update_socket_challenge_recived(socket, _current_user_id, challenger_id) do
     socket
     |> assign(challenged: challenger_id)
+  end
+
+  defp id_oponent(currente_user_id, players_id) do
+    Enum.find(players_id, &(&1 !== currente_user_id))
   end
 end
