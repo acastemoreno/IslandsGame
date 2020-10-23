@@ -1,0 +1,23 @@
+.players-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+  width: 60%;
+}
+
+.players-board-wood {
+  padding: 20px;
+  height: 80%;
+  width: 60%;
+  background-color: var(--brown);
+  border-radius: 10px;
+  overflow-y: auto;
+}
+.player-available {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  color: var(--white);
+}

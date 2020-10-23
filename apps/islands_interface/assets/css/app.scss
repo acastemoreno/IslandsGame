@@ -2,6 +2,11 @@
 @import "./phoenix.css";
 @import "../node_modules/nprogress/nprogress.css";
 
+@import "_main.css";
+@import "_index.css";
+@import "_game.css";
+@import "_main-room.css";
+
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
 .phx-no-feedback .invalid-feedback {
