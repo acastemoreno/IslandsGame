@@ -17,7 +17,7 @@ defmodule IslandsInterfaceWeb.SessionController do
 
       {:error, _error_message} ->
         conn
-        |> put_flash(:info, "Error loggin")
+        |> put_flash(:info, "Error logging")
         |> render("index.html")
     end
   end
