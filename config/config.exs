@@ -11,7 +11,6 @@ import Mix.Config
 
 # import_config "../apps/islands_engine/config/config.exs"
 import_config "../apps/islands_interface/config/config.exs"
-import_config "../apps/islands_interface/config/dev.exs"
 
 # Sample configuration:
 #
