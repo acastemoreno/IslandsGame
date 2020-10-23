@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
+    <link href="https://fonts.googleapis.com/css2?family=Seymour+One&display=swap" rel="stylesheet">
     <%= live_title_tag assigns[:page_title] || "IslandsInterface", suffix: " · Phoenix Framework" %>
     <link href="https://fonts.googleapis.com/css2?family=Seymour+One&display=swap" rel="stylesheet">
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
@@ -13,17 +14,19 @@
   <body>
     <header class="header">
       <nav role="navigation">
-        <ul>
-          <li>
-          <%= if @current_user do %>
-            <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
-          <% else %>
-            <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
-          <% end %>
-          </li>
-        </ul>
+        <%= if @current_user do %>
+          <h1 class="font-white"><%= @current_user.name %></h1>
+          <%= link "Logout", to: Routes.session_path(@conn, :logout), method: :delete, data: [confirm: "Are you sure?"] %>
+        <% else %>
+          <a href="<%= Routes.session_path(@conn, :show_login) %>">Login</a>
+        <% end %>
+        <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+          <span> | </span>
+          <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), target: :_blank %>
+        <% end %>
       </nav>
     </header>
+
     <main class="main">
       <%= @inner_content %>
     </main>
