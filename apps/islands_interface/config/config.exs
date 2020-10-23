@@ -10,10 +10,10 @@ use Mix.Config
 # Configures the endpoint
 config :islands_interface, IslandsInterfaceWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "N87zkjFUGjGrWvolt7kYuZBtFe0gYXMfOQ79hyaCHj+WOGUS/Wa9oq9jypBeYQTr",
+  secret_key_base: "8fs8cn9n08zkIRiJJkofgtfch404Pw5oDVOduY1/WX5FSbmzTiSLscfVCItdfMv3",
   render_errors: [view: IslandsInterfaceWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: IslandsInterface.PubSub,
-  live_view: [signing_salt: "s8iueQDH"]
+  live_view: [signing_salt: "RfXMrpF8"]
 
 # Configures Elixir's Logger
 config :logger, :console,

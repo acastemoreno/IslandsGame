@@ -24,7 +24,7 @@ defmodule IslandsInterface.MixProject do
   def application do
     [
       mod: {IslandsInterface.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -48,7 +48,8 @@ defmodule IslandsInterface.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:islands_engine, in_umbrella: true}
+      {:islands_engine, in_umbrella: true},
+      {:ecto, "~> 3.5.3"}
     ]
   end
 

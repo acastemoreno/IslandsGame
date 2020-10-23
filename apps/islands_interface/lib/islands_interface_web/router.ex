@@ -1,6 +1,8 @@
 defmodule IslandsInterfaceWeb.Router do
   use IslandsInterfaceWeb, :router
 
+  alias IslandsInterfaceWeb.Plugs.{SetCurrentUser}
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -8,6 +10,7 @@ defmodule IslandsInterfaceWeb.Router do
     plug :put_root_layout, {IslandsInterfaceWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug SetCurrentUser
   end
 
   pipeline :api do
@@ -17,7 +20,14 @@ defmodule IslandsInterfaceWeb.Router do
   scope "/", IslandsInterfaceWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    get "/", PageController, :index
+
+    get "/login", LoginController, :index
+    post "/login", LoginController, :create
+
+    live "/login-live", LoginLive, :index
+
+    live "/room", RoomLive, :index
   end
 
   # Other scopes may use custom stacks.

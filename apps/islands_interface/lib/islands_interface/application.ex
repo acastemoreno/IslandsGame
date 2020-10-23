@@ -3,6 +3,8 @@ defmodule IslandsInterface.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  alias IslandsInterface.Accounts
+
   use Application
 
   def start(_type, _args) do
@@ -12,9 +14,10 @@ defmodule IslandsInterface.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: IslandsInterface.PubSub},
       # Start the Endpoint (http/https)
-      IslandsInterfaceWeb.Endpoint
+      IslandsInterfaceWeb.Endpoint,
       # Start a worker by calling: IslandsInterface.Worker.start_link(arg)
       # {IslandsInterface.Worker, arg}
+      Accounts
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -7,7 +7,7 @@ defmodule IslandsInterfaceWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_islands_interface_key",
-    signing_salt: "vOPLTcmE"
+    signing_salt: "JzJcP3dy"
   ]
 
   socket "/socket", IslandsInterfaceWeb.UserSocket,
