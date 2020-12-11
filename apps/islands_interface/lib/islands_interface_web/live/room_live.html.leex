@@ -33,10 +33,10 @@
     </div>
 
 
-    <form phx-submit="submit_message" class="chat-room__message-form-container">
-      <input type="text" name="message" placeholder="Type your message" autocomplete="off" class="chat-room__message-input" value="<%= @input %>" autofocus/>
+    <form phx-submit="submit_message" phx-change="change_message" class="chat-room__message-form-container">
+      <input type="text" name="message" placeholder="Type your message" autocomplete="off" class="chat-room__message-input" data-pending-val="<%= @text %>" phx-hook="MyTextArea" value="<%= @text %>" />
       <input type="hidden" value="<%= Phoenix.Controller.get_csrf_token() %>" name="_csrf_token"/>
-      <button type="submit" phx-disable-with="Searching..." class="gold-button">Submit</button>
+      <button type="submit" class="gold-button">Submit</button>
     </form>
   </div>
 </div>
