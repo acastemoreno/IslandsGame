@@ -8,11 +8,8 @@ defmodule IslandsGame.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       releases: [
-        islands_engine: [
-          applications: [islands_engine: :permanent]
-        ],
-        islands_interface: [
-          applications: [islands_interface: :permanent]
+        island_game: [
+          applications: [islands_engine: :permanent, islands_interface: :permanent]
         ]
       ]
     ]
