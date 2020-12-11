@@ -9,7 +9,7 @@ defmodule IslandsGame.MixProject do
       deps: deps(),
       releases: [
         island_game: [
-          applications: [islands_interface: :permanent]
+          applications: [islands_engine: :permanent, islands_interface: :permanent]
         ]
       ]
     ]
