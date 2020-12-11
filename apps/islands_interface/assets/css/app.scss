@@ -20,10 +20,6 @@
   transition: opacity 1s ease-out;
 }
 
-.phx-connected {
-  height: calc(100% - 50px);
-}
-
 .phx-disconnected {
   cursor: wait;
 }
