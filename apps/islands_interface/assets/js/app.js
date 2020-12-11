@@ -20,11 +20,8 @@ import { LiveSocket } from "phoenix_live_view";
 let Hooks = {};
 
 Hooks.MyTextArea = {
-  mounted() {
-    console.log("Holi");
-  },
   updated() {
-    console.log("Holi");
+    this.el.value = this.el.dataset.pendingVal;
   },
 };
 

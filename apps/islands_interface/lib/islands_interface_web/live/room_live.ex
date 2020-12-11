@@ -39,7 +39,7 @@ defmodule IslandsInterfaceWeb.RoomLive do
         current_user: current_user,
         users: %{},
         messages: messages,
-        text: "holi"
+        text: ""
       )
       |> handle_joins(Presence.list(@presence))
 
@@ -47,17 +47,20 @@ defmodule IslandsInterfaceWeb.RoomLive do
   end
 
   @impl true
+  def handle_event("submit_message", %{"message" => ""}, socket) do
+    {:noreply, socket}
+  end
+
   def handle_event("submit_message", %{"message" => message}, socket) do
-    if message != "" do
-      Chat.create_message(socket.assigns.current_user.name, message)
+    Chat.create_message(socket.assigns.current_user.name, message)
 
-      Phoenix.PubSub.broadcast(PubSub, @chat_topic, %{
-        event: "new_message",
-        username: socket.assigns.current_user.name,
-        message: message
-      })
-    end
+    Phoenix.PubSub.broadcast(PubSub, @chat_topic, %{
+      event: "new_message",
+      username: socket.assigns.current_user.name,
+      message: message
+    })
 
+    socket = socket |> assign(text: "")
     {:noreply, socket}
   end
 
