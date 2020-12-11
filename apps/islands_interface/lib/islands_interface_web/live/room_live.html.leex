@@ -17,24 +17,13 @@
       <% end %>
       </ul>
     </div>
-    <%= if @challenged !== "" do %>
-      <div>
-        challenge recive from <%= @challenged %>
-        <button phx-click="accept-challenge" phx-value-oponent-id="<%= @challenged %>">
-        Accept!
-        </button>
-        <button phx-click="decline-challenge">
-        Decline!
-        </button>
-      </div>
-    <% end %>
   </div>
   <div class="chat-room__chat-panel">
     <h1>Live</h1>
     <hr>
     <div class="chat-room__container">
       <ul class="chat-room__list-messages">
-        <%= for message <- Enum.reverse(@messages) do %>
+        <%= for message <- @messages do %>
           <li class="chat-room__list-message">
             <img src="/images/green-boat.png" alt=""/>
             <span><bold><%= message.username %>:</bold> <span class="sans-serif"><%= message.message %></span></span>
@@ -42,8 +31,10 @@
         <% end %>
         </ul>
     </div>
-    <form phx-submit="submit_message" method="POST" class="chat-room__message-form-container">
-      <input type="text" name="message" placeholder="Type your message" class="chat-room__message-input"/>
+
+
+    <form phx-submit="submit_message" class="chat-room__message-form-container">
+      <input type="text" name="message" placeholder="Type your message" autocomplete="off" class="chat-room__message-input" value="<%= @input %>" autofocus/>
       <input type="hidden" value="<%= Phoenix.Controller.get_csrf_token() %>" name="_csrf_token"/>
       <button type="submit" phx-disable-with="Searching..." class="gold-button">Submit</button>
     </form>

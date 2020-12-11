@@ -38,8 +38,8 @@ defmodule IslandsInterfaceWeb.RoomLive do
       |> assign(
         current_user: current_user,
         users: %{},
-        challenged: "",
-        messages: messages
+        messages: messages,
+        input: ""
       )
       |> handle_joins(Presence.list(@presence))
 
@@ -63,6 +63,7 @@ defmodule IslandsInterfaceWeb.RoomLive do
   def handle_info(%{event: "new_message", username: username, message: message}, socket) do
     {:noreply,
      socket
+     |> assign(input: "")
      |> update(:messages, fn messages ->
        [%{username: username, message: message} | messages]
      end)}
